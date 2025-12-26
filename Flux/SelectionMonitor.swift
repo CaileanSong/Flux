@@ -24,6 +24,15 @@ class SelectionMonitor: ObservableObject {
         
         // 监听鼠标抬起事件（全局）
         eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseUp) { [weak self] event in
+            // 忽略菜单栏区域的点击（y 坐标接近屏幕顶部）
+            let screenHeight = NSScreen.main?.frame.height ?? 0
+            let menuBarHeight: CGFloat = 30
+            let mouseY = NSEvent.mouseLocation.y
+            
+            if mouseY > screenHeight - menuBarHeight {
+                return
+            }
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self?.checkSelection()
             }
