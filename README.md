@@ -20,13 +20,6 @@
 
 ## 安装
 
-### 手动安装
-
-1. 下载 [最新版本](../../releases)
-2. 解压后将 `Flux.app` 拖入 `/Applications` 文件夹
-3. 首次打开时右键选择"打开"（绕过 Gatekeeper）
-4. 在系统设置中授予辅助功能权限
-
 ### 从源码构建
 
 ```bash
@@ -35,7 +28,9 @@ cd Flux
 open Flux.xcodeproj
 ```
 
-在 Xcode 中 Build (⌘B)，然后在 Products 文件夹找到 Flux.app。
+在 Xcode 中 Build (⌘B)，然后在 Products 文件夹找到 Flux.app，拖入 `/Applications` 即可。
+
+首次打开时右键选择"打开"（绕过 Gatekeeper），并在系统设置中授予辅助功能权限。
 
 ## 使用
 
