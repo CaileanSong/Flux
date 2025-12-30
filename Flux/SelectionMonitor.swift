@@ -54,11 +54,13 @@ class SelectionMonitor: ObservableObject {
     }
     
     private func checkSelection() {
-        // 只使用 Accessibility API，不自动模拟复制
+        // 先尝试 Accessibility API
         if let text = getSelectedText(), !text.isEmpty {
             triggerTranslation(text: text)
+        } else {
+            // Accessibility API 失败时（如 Electron 应用），使用剪贴板方案
+            tryClipboardFallback()
         }
-        // Electron 应用需要用户手动按快捷键触发
     }
     
     private func tryClipboardFallback() {

@@ -139,13 +139,15 @@ struct PopupContentView: View {
                 .frame(minWidth: 150)
                 .padding(12)
             } else {
-                // 翻译内容
-                Text(controller.translatedText)
-                    .font(.system(size: 14))
-                    .textSelection(.enabled)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(12)
-                    .fixedSize(horizontal: false, vertical: true)
+                // 翻译内容 - 添加滚动视图支持长文本
+                ScrollView(.vertical, showsIndicators: true) {
+                    Text(controller.translatedText)
+                        .font(.system(size: 14))
+                        .textSelection(.enabled)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(12)
+                }
+                .frame(maxHeight: 300)
             }
         }
         .frame(minWidth: 180, maxWidth: 480, alignment: .leading)
